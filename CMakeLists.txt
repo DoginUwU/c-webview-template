@@ -7,6 +7,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 project(template VERSION "0.0.1")
 
 add_subdirectory(libs/webview)
+add_subdirectory(libs/json)
 
 option(DEV "Build with dev mode enabled" OFF)
 

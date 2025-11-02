@@ -18,7 +18,7 @@ target_compile_features(backend PRIVATE cxx_std_23)
 set_target_properties(backend PROPERTIES CXX_STANDARD 23)
 set_target_properties(backend PROPERTIES CXX_STANDARD_REQUIRED ON)
 
-target_link_libraries(backend PRIVATE webview::core)
+target_link_libraries(backend PRIVATE webview::core nlohmann_json::nlohmann_json)
 target_compile_definitions(backend PRIVATE
     $<$<BOOL:${DEV}>:DEV_MODE>
 )

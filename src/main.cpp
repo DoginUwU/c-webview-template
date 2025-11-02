@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <iostream>
 
+#include "nlohmann/json.hpp"
 #include "webview/webview.h"
 #include "index_html.h"
 
@@ -19,6 +20,14 @@ auto main() -> int {
         auto wv = webview::webview(debug, nullptr);
         wv.set_title("Basic Template");
         wv.set_size(480, 320, WEBVIEW_HINT_NONE);
+
+        wv.bind("ping", [&](const std::string &arg) -> std::string {
+            std::cout << "ping: " << arg << '\n';
+            
+            nlohmann::json response;
+            response["message"] = "pong";
+            return response.dump();
+        });
 
         #ifdef DEV_MODE
             wv.navigate("http://localhost:5173");
