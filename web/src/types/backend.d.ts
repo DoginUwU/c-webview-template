@@ -1,6 +1,6 @@
 declare global {
     interface Window {
-        ping: (arg: string) => Promise<string>;
+        ping: (arg: string) => Promise<{ message: string }>;
     }
 }
 

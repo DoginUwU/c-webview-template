@@ -12,5 +12,7 @@ class Exception : public std::runtime_error {
   Exception(std::string_view fmt, Args&&... args)
       : std::runtime_error(std::vformat(fmt, std::make_format_args(args...))) {}
 
-  auto stacktrace() const -> std::string;
+  auto stacktrace() const -> std::string {
+    return std::string();
+  }
 };

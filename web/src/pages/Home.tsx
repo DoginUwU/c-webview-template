@@ -4,7 +4,7 @@ export const Home = () => {
   const handlePing = async () => {
     try {
       const response = await window.ping("Hello from frontend")
-      console.log("Response from backend:", response)
+      console.log("Response from backend:", response, response.message)
     } catch (error) {
       console.error("Error calling ping:", error)
     }

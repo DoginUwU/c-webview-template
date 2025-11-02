@@ -6,7 +6,6 @@
 #include "index_html.h"
 #include "error.hpp"
 
-
 #if defined(_WIN32) && !defined(DEV_MODE)
 auto WINAPI WinMain(HINSTANCE /*hInst*/, HINSTANCE /*hPrevInst*/,
                    LPSTR /*lpCmdLine*/, int /*nCmdShow*/) -> int {
@@ -40,6 +39,9 @@ auto main() -> int {
         wv.run();
     } catch (const webview::exception &e) {
         std::cerr << e.what() << '\n';
+        return EXIT_FAILURE;
+    } catch (const std::exception &e) {
+        std::cerr << "Error: " << e.what() << '\n';
         return EXIT_FAILURE;
     }
 
