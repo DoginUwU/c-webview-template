@@ -1,0 +1,36 @@
+{
+    "buildType": {
+        "default": "debug",
+        "choices": {
+            "debug": {
+                "buildType": "Debug",
+                "description": "Debug build with debug symbols and no optimizations.",
+                "short": "Debug"
+            },
+            "release": {
+                "buildType": "Release",
+                "description": "Release build with optimizations enabled and no debug symbols.",
+                "short": "Release"
+            }
+        }
+    },
+    "devMode": {
+        "default": "on",
+        "choices": {
+            "on": {
+                "settings": {
+                    "DEV": true
+                },
+                "description": "Enable development mode features.",
+                "short": "Dev Mode On"
+            },
+            "off": {
+                "settings": {
+                    "DEV": false
+                },
+                "description": "Disable development mode features.",
+                "short": "Dev Mode Off"
+            }
+        }
+    }
+}
