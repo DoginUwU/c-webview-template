@@ -33,8 +33,16 @@ else()
         )
     endif()
 
-    target_sources(backend PRIVATE ${CMAKE_SOURCE_DIR}/web/dist/index_html.h)
 endif()
+
+set(INDEX_HTML_H ${CMAKE_SOURCE_DIR}/web/dist/index_html.h)
+
+if(NOT EXISTS ${INDEX_HTML_H})
+    file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/web/dist)
+    file(WRITE ${INDEX_HTML_H} "// placeholder: run vite-build to regenerate\n")
+endif()
+
+target_sources(backend PRIVATE ${INDEX_HTML_H})
 
 target_include_directories(backend PRIVATE ${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/web/dist)
 

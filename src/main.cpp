@@ -3,9 +3,7 @@
 #include <nlohmann/json.hpp>
 #include <webview/webview.h>
 
-#if !defined(DEV_MODE)
 #include "index_html.h"
-#endif
 #include "error.hpp"
 
 #if defined(_WIN32) && !defined(DEV_MODE)
