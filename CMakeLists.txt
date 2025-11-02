@@ -8,6 +8,8 @@ project(template VERSION "0.0.1")
 
 option(DEV "Build with dev mode enabled" OFF)
 
+add_executable(backend src/main.cpp)
+
 if(DEV)
     message(STATUS "🧩 Building in DEV mode")
 else()
@@ -19,6 +21,10 @@ else()
             WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/web
             COMMENT "Building Vite on Windows"
         )
+
+        set_target_properties(backend PROPERTIES
+            WIN32_EXECUTABLE TRUE
+        )
     else()
         add_custom_target(vite-build ALL
             COMMAND bash -c "yarn install && yarn build --mode production && yarn postbuild"
@@ -26,19 +32,8 @@ else()
             COMMENT "Building Vite on Unix"
         )
     endif()
-endif()
 
-add_executable(backend src/main.cpp)
-
-if(DEV)
-else()
     target_sources(backend PRIVATE ${CMAKE_SOURCE_DIR}/web/dist/index_html.h)
-
-    if(WIN32)
-        set_target_properties(backend PROPERTIES
-            WIN32_EXECUTABLE TRUE
-        )
-    endif()
 endif()
 
 target_include_directories(backend PRIVATE ${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/web/dist)
