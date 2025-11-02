@@ -1,18 +1,20 @@
 #include <stdlib.h>
 #include <iostream>
+#include <nlohmann/json.hpp>
+#include <webview/webview.h>
 
-#include "nlohmann/json.hpp"
-#include "webview/webview.h"
 #include "index_html.h"
+#include "error.hpp"
 
-#ifdef _WIN32
+
+#if defined(_WIN32) && !defined(DEV_MODE)
 auto WINAPI WinMain(HINSTANCE /*hInst*/, HINSTANCE /*hPrevInst*/,
                    LPSTR /*lpCmdLine*/, int /*nCmdShow*/) -> int {
 #else
 auto main() -> int {
 #endif
     try {
-        auto debug = true;
+        auto debug = false;
         #ifdef DEV_MODE
             debug = true;
         #endif

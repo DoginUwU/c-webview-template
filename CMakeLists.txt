@@ -6,9 +6,6 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 project(template VERSION "0.0.1")
 
-add_subdirectory(libs/webview)
-add_subdirectory(libs/json)
-
 option(DEV "Build with dev mode enabled" OFF)
 
 if(DEV)
@@ -31,4 +28,30 @@ else()
     endif()
 endif()
 
-add_subdirectory(src)
+add_executable(backend src/main.cpp)
+
+if(DEV)
+else()
+    target_sources(backend PRIVATE ${CMAKE_SOURCE_DIR}/web/dist/index_html.h)
+
+    if(WIN32)
+        set_target_properties(backend PROPERTIES
+            WIN32_EXECUTABLE TRUE
+        )
+    endif()
+endif()
+
+target_include_directories(backend PRIVATE ${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/web/dist)
+
+target_compile_features(backend PRIVATE cxx_std_23)
+
+set_target_properties(backend PROPERTIES CXX_STANDARD 23)
+set_target_properties(backend PROPERTIES CXX_STANDARD_REQUIRED ON)
+
+add_subdirectory(libs/webview)
+add_subdirectory(libs/json)
+
+target_link_libraries(backend PRIVATE webview::core nlohmann_json::nlohmann_json)
+target_compile_definitions(backend PRIVATE
+    $<$<BOOL:${DEV}>:DEV_MODE>
+)

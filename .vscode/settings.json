@@ -1,4 +1,10 @@
 {
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
+    "cmake.configureEnvironment": {
+        "VSCMD_ARG_TGT_ARCH": "x64"
+    },
+    "cmake.generator": "Ninja",
+    "C_Cpp.configurationProvider": "ms-vscode.cmake-tools",
     "files.associations": {
         "algorithm": "cpp",
         "any": "cpp",
@@ -81,6 +87,7 @@
         "xstring": "cpp",
         "xtr1common": "cpp",
         "xtree": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "string_view": "cpp"
     }
 }
