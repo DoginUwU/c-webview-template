@@ -17,7 +17,7 @@ else()
 
     if(WIN32)
         add_custom_target(vite-build ALL
-            COMMAND cmd /c "yarn install && yarn build --mode production && yarn postbuild"
+            COMMAND cmd /c "yarn install && yarn build"
             WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/web
             COMMENT "Building Vite on Windows"
         )
@@ -27,7 +27,7 @@ else()
         )
     else()
         add_custom_target(vite-build ALL
-            COMMAND bash -c "yarn install && yarn build --mode production && yarn postbuild"
+            COMMAND bash -c "yarn install && yarn build"
             WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/web
             COMMENT "Building Vite on Unix"
         )

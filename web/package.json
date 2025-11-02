@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build --mode production && yarn postbuild",
     "lint": "eslint .",
     "preview": "vite preview",
     "postbuild": "tsx ./postbuild.ts ./dist/index.html ./dist/index_html.h"

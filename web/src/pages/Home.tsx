@@ -5,6 +5,8 @@ export const Home = () => {
     try {
       const response = await window.ping("Hello from frontend")
       console.log("Response from backend:", response, response.message)
+
+      alert(`Ping response: ${response.message}`)
     } catch (error) {
       console.error("Error calling ping:", error)
     }
